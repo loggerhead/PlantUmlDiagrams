@@ -55,9 +55,9 @@
     // http://192.168.1.100:8080/plantuml which is ready for sharing to your team.
     "plantuml_server": "http://localhost:8080/plantuml/",
 
-    // The full path to the plantuml.jar file
-    "jar_file": "C:/Users/plantuml.jar",
+    // The full path to the plantuml.jar file, change to your path
+    "jar_file": "/usr/local/plantuml.jar",
 
     // Can be "UTF-8" - to support non-latin text in diagram
-    "charset": null
+    "charset": "UTF-8"
 }
