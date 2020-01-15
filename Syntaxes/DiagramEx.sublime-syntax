@@ -5,7 +5,9 @@ name: DiagramEx
 file_extensions:
   - wsd
   - uml
+  - pu
   - puml
+  - plantuml
 scope: source.wsd
 
 variables:
