@@ -1,18 +1,20 @@
 %YAML 1.2
 ---
 # See http://www.sublimetext.com/docs/3/syntax.html
-name: DiagramEx
+name: PlantUML
 file_extensions:
-  - wsd
-  - uml
   - pu
   - puml
   - plantuml
-scope: source.wsd
+scope: source.plantuml
+first_line_match: ^\s*@(startuml|startdot|startsalt)\b
 
 variables:
-  obj_name: '(?xi) [a-z_]  [a-z_0-9]*'
-  color: '(?xi) \# (?: \d+ | {{obj_name}} )'
+  type: (?:actor|participant|usecase|class|interface|abstract|enum|component|state|object|artifact|folder|rectangle|node|frame|cloud|database|storage|agent|stack|boundary|control|entity|card|file|package|queue|archimate|diamond|detach|collections)
+  at_keyword: (?:@(startuml|enduml|startdot|enddot|startsalt|endsalt))
+  group_keyword: (?:alt|else|opt|looppar|break|critical|group)
+  keyword: (?:as|also|autonumber|caption|title|newpage|box|alt|else|opt|loop|par|break|critical|note|rnote|hnote|legend|group|left|right|of|on|link|over|end|activate|deactivate|destroy|create|footbox|hide|show|skinparam|skin|top|bottom|toptobottomdirection|package|namespace|page|up|down|if|else|elseif|endif|partition|footer|header|center|rotate|ref|return|is|repeat|start|stop|while|endwhile|fork|again|kill|order|allow_mixing|allowmixing|mainframe|accross|colors|chocolate|lastpage)
+  preproc: (?:!exit|!include|!pragma|!define|!undef|!if|!ifdef|!endif|!ifndef|!else|!definelong|!enddefinelong)
   known_color: |-
     (?xi) (?:
       AliceBlue | AntiqueWhite | Aqua | Aquamarine | Azure | Beige | Bisque | Black | BlanchedAlmond | Blue | BlueViolet |
@@ -30,117 +32,175 @@ variables:
       Salmon | SandyBrown | SeaGreen | SeaShell | Sienna | Silver | SkyBlue | SlateBlue | SlateGray | SlateGrey | Snow | SpringGreen |
       SteelBlue | Tan | Teal | Thistle | Tomato | Turquoise | Violet | Wheat | White | WhiteSmoke | Yellow | YellowGreen
     )
-
+  color: '(?:{{known_color}}|\h+)'
 
 contexts:
+  prototype:
+    - include: comments
+
   main:
-    - match: (?xi) ^ \s* ( \# | ' ) (?!.*')
-      scope: comment.line.source.wsd
-      push:
-        - meta_scope: comment.line.source.wsd
-        - match: \n
-          pop: true
+    - include: strings
+    - include: number
+    - include: color
+    - include: gap_statement
+    - include: delay_statement
+    - include: divider_statement
+    - include: declare_statement
+    - include: group_statement
+    - include: footer_statement
+    - include: block_statement
+    - include: inline_statement
+    - include: at_keyword
+    - include: keywords
 
-    - match: |-
-        (?xi) ^ \s*
-        \b (
-          abstract | actor | artifact | class | component | database |
-          enum | interface | object | package | participant | state |
-          usecase
-        ) \b
-      scope: support.function.source.wsd
-      push:
-        - match: '(.*)(\{)'
-          captures:
-            1: entity.name.class.wsd entity.name.struct.wsd
-          push:
-            - meta_scope: meta.block.wsd
-            - include: all_reamaining
-            - match: '\}'
-              pop: true
-        - match: ''
-          pop: true
+  declare_statement:
+    - meta_content_scope: declare_statement
+    - match: \b{{type}}\b
+      scope: storage.type.plantuml
+      push: as_expr
 
-    - include: all_reamaining
-
-    # control keywords
-    - match: |-
-        (?xi) ^ \s* (
-          @enduml | @startuml | activate | again | also | alt | as | autonumber | bottom | box | break |
-          center | create | critical | deactivate | destroy | down | else | end | endif | endwhile | footbox |
-          footer | fork | group | header | hide | if | is | left | link | loop | namespace |
-          newpage | note | of | on | opt | over | page | par | partition | ref | repeat |
-          return | right | rotate | show | skin | skinparam | start | stop | title | top to bottom direction | top |
-          up | while
-        )\b
-      scope: keyword.control.source.wsd
-
-    - match: (?xi) \b {{obj_name}} \b
-      scope: variable.parameter.source.wsd
-
-
-  all_reamaining:
-    - match: (?xi) ^ \b title \b
-      scope: string.quoted.double.source.wsd
-      push:
-        - match: '\n'
-          scope: keyword.control.source.wsd
-          pop: true
-
-    # known colors
-    - match: '{{known_color}}'
-      scope: variable.source.wsd
-
-    - match: |-
-        (?xi) ^ \s* ( [\w\_\-]+ ) \s*
-        (
-          (?:["'].*?["'])? \s*
-          (?:
-              [\<\}\*o\.\+x\^\#\ ]             (?:[\-\-]|[\.\.]){2}?\*?
-              | \*?(?:[\-\-]|[\.\.]){2}        [\{\>\*o\.\+x\^\#\ ]
-
-              | [\<\{\*o\.\+x\^\#]\|?[-\.]?           ([^\|\-\s\.]*)[\-\.]
-              | [\-\.]([^\|\-\s\.]*)                  [-\.]?\|?[\*o\.\+x\^\#\{\>]
-          )
-          \s* (?:["'].*?["'])? \s* ( [\w\_\-]+ )
-        )
+  as_expr:
+    - match: \n
+      pop: true
+    - match: \b(as)\b
+      scope: keyword.control.plantuml
+    - match: \b(order)\s+(\d+)\b
       captures:
-        1: entity.name.function.wsd
-        2: string.quoted.double.source.wsd
-        3: keyword.control.source.wsd
-        4: keyword.control.source.wsd
-        5: entity.name.function.wsd
-      push:
-        - meta_scope: constant.string.source.wsd
-        - match: ':'
-          scope: keyword.control.source.wsd
-        - match: \n
-          pop: true
+        1: keyword.control.plantuml
+        2: constant.numeric.plantuml
+    - include: color
+    - include: token
 
-    - match: (?xi) ^ ( {{obj_name}} ) [ \t]* (:)
+  delay_statement:
+    - match: \n
+      pop: true
+    - match: ^\s*(\.\.\.)((.*?)(\.\.\.))?\s*$
       captures:
-        1: entity.name.function.wsd
-        2: keyword.control.source.wsd
-      push:
-        - meta_scope: string.quoted.double.source.wsd
-        - match: \n
-          pop: true
+        1: keyword.operator.plantuml
+        3: string.quoted.double.plantuml
+        4: keyword.operator.plantuml
 
-    - match: \"
-      scope: string.quoted.double.source.wsd
-      push:
-        - meta_scope: string.quoted.double.source.wsd
-        - match: \"
-          pop: true
+  divider_statement:
+    - match: \n
+      pop: true
+    - match: ^\s*(={2,})(.*?)(\1)\s*$
+      captures:
+        1: keyword.operator.plantuml
+        2: string.quoted.double.plantuml
+        3: keyword.operator.plantuml
 
+  gap_statement:
+    - match: \n
+      pop: true
+    - match: ^\s*(\|\|\|)\s*$
+      scope: keyword.operator.plantuml
+    - match: ^\s*(\|\|)(\d+)(\|\|)\s*$
+      captures:
+        1: keyword.operator.plantuml
+        2: constant.numeric.plantuml
+        3: keyword.operator.plantuml
+
+  # TODO
+  footer_statement:
+    - match: \n
+      pop: true
+    - match: ^\s*(footer)\s*
+      scope: storage.type.plantuml
+    - include: string
+
+  comments:
+    - match: /\'
+      scope: punctuation.definition.comment.planuml
+      push:
+        - meta_scope: comment.block.planuml
+        - match: \'/
+          scope: punctuation.definition.comment.planuml
+          pop: true
     - match: \'
-      scope: string.quoted.single.source.wsd
+      scope: punctuation.definition.comment.planuml
       push:
-        - meta_scope: string.quoted.single.source.wsd
-        - match: \'
+        - meta_scope: comment.line.planuml
+        - match: \n
           pop: true
 
-    - match: (?xi) \b {{obj_name}} \b
-      scope: constant.string.source.wsd
+  at_keyword:
+    - match: ^\s*{{at_keyword}}\b
+      scope: entity.name.impl.plantuml
 
+  keywords:
+    - match: \b{{keyword}}\b
+      scope: keyword.control.plantuml
 
+  token:
+    - include: string
+    - include: identifier
+
+  identifier:
+    - match: \b(?:\w+)\b
+      scope: variable.other.plantuml
+
+  string:
+    - match: \"
+      scope: punctuation.definition.string.begin.plantuml
+      push:
+        - meta_include_prototype: false
+        - meta_scope: string.quoted.double.plantuml
+        - match: \"
+          scope: punctuation.definition.string.end.plantuml
+          pop: true
+
+  inline_statement:
+    - match: (,)
+      scope: punctuation.separator.plantuml
+    - match: (\*\*|!!|\+\+|--)?\s*(?:\#{{color}})?\s*(:)(.*)$
+      captures:
+        1: keyword.operator.plantuml
+        2: punctuation.separator.plantuml
+        3: string.quoted.double.plantuml
+    - include: arrow_expr
+    - include: note_expr
+
+  arrow_expr:
+    - match: \[?[xo]?[</\\]{0,2}-(?:\[(\#{{color}})\])?-?[>/\\]{0,2}[xo]?\]?
+      scope: keyword.operator.plantuml
+      captures:
+        1: constant.numeric.color.plantuml
+
+  note_expr:
+    - match: ^\s*(ref|[hr]?note)\s+((over|left|right)\b(\s*of\s+)?)
+      captures:
+        1: storage.type.plantuml
+        2: keyword.operator.plantuml
+    - include: color
+
+  block_statement:
+    - match: ^\s*(ref|[hr]?note)\s+((over|left|right)\b(\s*of\s+)?)(?!.*:)
+      captures:
+        1: storage.type.plantuml
+        2: keyword.operator.plantuml
+      push:
+        - match: \n
+          set:
+            - meta_content_scope: string.quoted.double.plantuml
+            - match: ^\s*end\s*(ref|[hr]?note)\b
+              scope: keyword.control.plantuml
+              pop: true
+        - match: (,)
+          scope: punctuation.separator.plantuml
+        - include: color
+        - include: token
+
+  group_statement:
+    - match: ^\s*({{group_keyword}})\b(.*)$
+      captures:
+        1: keyword.control.plantuml
+        2: string.quoted.double.plantuml
+
+  color:
+    - match: (?:[\W^])(\#{{color}}(/{{color}})?)\b
+      captures:
+        1: constant.numeric.color.plantuml
+
+  number:
+    - match: \b\d+\b
+      scope: constant.numeric.plantuml
