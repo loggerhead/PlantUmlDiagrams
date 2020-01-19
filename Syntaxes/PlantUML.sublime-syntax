@@ -32,7 +32,8 @@ variables:
       Salmon | SandyBrown | SeaGreen | SeaShell | Sienna | Silver | SkyBlue | SlateBlue | SlateGray | SlateGrey | Snow | SpringGreen |
       SteelBlue | Tan | Teal | Thistle | Tomato | Turquoise | Violet | Wheat | White | WhiteSmoke | Yellow | YellowGreen
     )
-  color: '(?:{{known_color}}|\h+)'
+  color: (?:{{known_color}}|\h+)
+  color_pattern: (?:\#{{color}}(?:/{{color}})?)
 
 contexts:
   prototype:
@@ -152,17 +153,18 @@ contexts:
   inline_statement:
     - match: (,)
       scope: punctuation.separator.plantuml
-    - match: (\*\*|!!|\+\+|--)?\s*(?:\#{{color}})?\s*(:)(.*)$
+    - match: (\*\*|!!|\+\+|--)?\s*({{color_pattern}})?\s*(:)(.*)
       captures:
         1: keyword.operator.plantuml
-        2: punctuation.separator.plantuml
-        3: string.quoted.double.plantuml
+        2: constant.numeric.color.plantuml
+        3: punctuation.separator.plantuml
+        4: string.quoted.double.plantuml
     - include: arrow_expr
     - include: note_expr
     - include: title_expr
 
   arrow_expr:
-    - match: '[\[\]]?[xo]?[</\\]{0,2}-(?:\[(\#{{color}})\])?-?[>/\\]{0,2}[xo]?[\[\]]?'
+    - match: '[\[\]]?[xo\*]?[</\\]{0,2}[-.](?:\[({{color_pattern}})\])?[-.]?[>/\\]{0,2}[xo\*]?[\[\]]?'
       scope: keyword.operator.plantuml
       captures:
         1: constant.numeric.color.plantuml
@@ -198,13 +200,14 @@ contexts:
         - include: token
 
   group_statement:
-    - match: ^\s*({{group_keyword}})\b(.*)$
+    - match: ^\s*({{group_keyword}})\s+({{color_pattern}}\s+)?(.*)
       captures:
         1: keyword.control.plantuml
-        2: string.quoted.double.plantuml
+        2: constant.numeric.color.plantuml
+        3: string.quoted.double.plantuml
 
   color:
-    - match: (?:[\W^])(\#{{color}}(/{{color}})?)\b
+    - match: (?:[\W^])({{color_pattern}})\b
       captures:
         1: constant.numeric.color.plantuml
 
