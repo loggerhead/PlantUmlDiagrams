@@ -161,7 +161,7 @@ contexts:
     - include: note_expr
 
   arrow_expr:
-    - match: \[?[xo]?[</\\]{0,2}-(?:\[(\#{{color}})\])?-?[>/\\]{0,2}[xo]?\]?
+    - match: '[\[\]]?[xo]?[</\\]{0,2}-(?:\[(\#{{color}})\])?-?[>/\\]{0,2}[xo]?[\[\]]?'
       scope: keyword.operator.plantuml
       captures:
         1: constant.numeric.color.plantuml
