@@ -159,6 +159,7 @@ contexts:
         3: string.quoted.double.plantuml
     - include: arrow_expr
     - include: note_expr
+    - include: title_expr
 
   arrow_expr:
     - match: '[\[\]]?[xo]?[</\\]{0,2}-(?:\[(\#{{color}})\])?-?[>/\\]{0,2}[xo]?[\[\]]?'
@@ -172,6 +173,12 @@ contexts:
         1: storage.type.plantuml
         2: keyword.operator.plantuml
     - include: color
+
+  title_expr:
+    - match: ^\s*(title)\s+(.*)
+      captures:
+        1: keyword.control.plantuml
+        2: string.quoted.double.plantuml
 
   block_statement:
     - match: ^\s*(ref|[hr]?note)\s+((over|left|right)\b(\s*of\s+)?)(?!.*:)
