@@ -41,7 +41,6 @@ class BaseProcessor(object):
         for block in text_blocks:
             try:
                 diagram = self.DIAGRAM_CLASS(self, sourceFile, block, sequence[0])
-
             except Exception as e:
                 log(1, repr(block))
                 log(1, "Error rendering diagram for block: %s", e)

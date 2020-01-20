@@ -17,7 +17,6 @@ import plantuml_connection
 # import imp
 # imp.reload( plantuml_connection )
 
-
 import os
 import sys
 import subprocess
@@ -98,7 +97,6 @@ class PlantUMLDiagram(BaseDiagram):
                 content = self._generate_server( "%s/%s/" % (server_url.strip('/'), self.output_format))
                 self.file.write(content)
                 return self.file
-
             except plantuml_connection.PlantUMLConnectionError as error:
                 log(1, "Failed to connect to the server: %s (%s) Falling back to local rendering...", error, server_url)
         else:
