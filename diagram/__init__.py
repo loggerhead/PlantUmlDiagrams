@@ -135,14 +135,8 @@ def _load_viewer(sublime_settings):
         raise Exception('No working viewers found!')
 
 
-def process(view, continuous_processor=None):
+def process(view, async=False):
     diagrams = []
-
-    if continuous_processor:
-        async=False
-
-    else:
-        async=True
 
     for plantuml_processor in ACTIVE_UML_PROCESSORS:
         log(4, "plantuml_processor %s", plantuml_processor)
@@ -167,45 +161,28 @@ def process(view, continuous_processor=None):
         if text_blocks:
             diagrams.append((plantuml_processor, text_blocks, ))
 
-    if diagrams:
-        sourceFile = view.file_name()
-
-        if async:
-            t = Thread(target=render_and_view, args=(sourceFile, diagrams, continuous_processor))
-            t.daemon = True
-            t.start()
-
-        else:
-            render_and_view(sourceFile, diagrams, continuous_processor)
-
-        return True
-
-    else:
+    if not diagrams:
         return False
 
+    sourceFile = view.file_name()
+    t = Thread(target=render_and_view, args=(sourceFile, diagrams))
+    t.daemon = True
+    t.start()
+    return True
 
-def render_and_view(sourceFile, diagrams, continuous_processor):
+
+def render_and_view(sourceFile, diagrams):
     # log(1, "Rendering %s", diagrams)
     sequence = [0]
     diagram_files = []
 
     for plantuml_processor, text_blocks in diagrams:
-        diagram_files.extend(plantuml_processor.process(sourceFile, text_blocks, sequence, continuous_processor))
+        diagram_files.extend(plantuml_processor.process(sourceFile, text_blocks, sequence))
         sequence[0] += 1
 
     if diagram_files:
         names = [d.name for d in diagram_files if d]
-
-        if continuous_processor:
-
-            if continuous_processor.open_image:
-                log(1, "continuous_processor: %s viewing %s", ACTIVE_VIEWER, names)
-                ACTIVE_VIEWER.view(diagram_files)
-                continuous_processor.open_image = False
-
-        else:
-            log(1, "%s viewing %s", ACTIVE_VIEWER, names)
-            ACTIVE_VIEWER.view(diagram_files)
-
+        log(1, "%s viewing %s", ACTIVE_VIEWER, names)
+        ACTIVE_VIEWER.view(diagram_files)
     else:
         error_message("No diagrams generated...")

@@ -1,4 +1,3 @@
 [
-    { "caption": "PlantUmlDiagrams: Continually Generate Diagram", "command": "display_diagrams_continually" },
-    { "caption": "PlantUmlDiagrams: Generate Diagrams for Active View", "command": "display_diagrams" },
+    { "caption": "PlantUmlDiagrams: Show/Display for Active View", "command": "display_diagrams" },
 ]
