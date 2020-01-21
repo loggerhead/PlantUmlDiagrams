@@ -68,7 +68,7 @@ def process(view):
     return True
 
 
-def render_and_view(view, sourceFile, diagrams):
+def render_and_view(source_view, sourceFile, diagrams):
     # log(1, "Rendering %s", diagrams)
     sequence = [0]
     diagram_files = []
@@ -80,7 +80,7 @@ def render_and_view(view, sourceFile, diagrams):
     if diagram_files:
         names = [d.name for d in diagram_files if d]
         for diagram_file in diagram_files:
-            sublime.active_window().open_file(diagram_file.name)
-            sublime.active_window().focus_view(view)
+            render_view = sublime.active_window().open_file(diagram_file.name)
+            sublime.active_window().focus_view(source_view)
     else:
         sublime.error_message("No diagrams generated...")

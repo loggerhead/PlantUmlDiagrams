@@ -68,7 +68,6 @@ class PlantUMLDiagram(BaseDiagram):
         if self.sourceFile is None:
             self.file = NamedTemporaryFile(prefix='untitled', suffix=self.output_extension, delete=False)
             self.sourceFile = self.file.name
-
         else:
             self.sourceFile = "%s%s%s" % (splitext(self.sourceFile)[0], str(sequence) if sequence else "", self.output_extension)
             self.file = open(self.sourceFile, 'wb')
