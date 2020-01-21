@@ -69,15 +69,18 @@ def process(view):
 
 
 def render_and_view(source_view, sourceFile, diagrams):
-    # log(1, "Rendering %s", diagrams)
     sequence = [0]
     diagram_files = []
 
     for plantuml_processor, text_blocks in diagrams:
-        diagram_files.extend(plantuml_processor.process(sourceFile, text_blocks, sequence))
+        source_view.set_status(str(source_view.id()), "Generating diagrams from '%s'..." % sourceFile)
+        diagram_file = plantuml_processor.process(sourceFile, text_blocks, sequence)
+        source_view.erase_status(str(source_view.id()))
+        diagram_files.extend(diagram_file)
         sequence[0] += 1
 
     if diagram_files:
+        diagram_files = list(filter(lambda x: x, diagram_files))
         names = [d.name for d in diagram_files if d]
         for diagram_file in diagram_files:
             render_view = sublime.active_window().open_file(diagram_file.name)

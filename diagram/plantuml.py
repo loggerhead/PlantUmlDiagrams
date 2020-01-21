@@ -3,6 +3,7 @@
 
 
 from __future__ import absolute_import
+import sublime
 from .base import BaseDiagram
 from .base import BaseProcessor
 from subprocess import Popen as execute, PIPE, STDOUT, call
@@ -10,8 +11,6 @@ from os import getcwd, chdir
 from os.path import abspath, dirname, exists, isdir, join, splitext, basename
 
 from tempfile import NamedTemporaryFile
-from sublime import platform, load_settings
-
 import plantuml_connection
 
 # import imp
@@ -32,7 +31,7 @@ if os.name == 'nt':
 from debug_tools import getLogger
 log = getLogger(__name__)
 
-IS_MSWINDOWS = (platform() == 'windows')
+IS_MSWINDOWS = (sublime.platform() == 'windows')
 CREATE_NO_WINDOW = 0x08000000  # See MSDN, http://goo.gl/l4OKNe
 EXTRA_CALL_ARGS = {'creationflags': CREATE_NO_WINDOW, 'shell': True} if IS_MSWINDOWS else {}
 
@@ -82,7 +81,7 @@ class PlantUMLDiagram(BaseDiagram):
         """
         Set the dir of sourceFile as working dir, otherwise plantuml could not include files correctly.
         """
-        sublime_settings = load_settings("PlantUmlDiagrams.sublime-settings")
+        sublime_settings = sublime.load_settings("PlantUmlDiagrams.sublime-settings")
         server_url = sublime_settings.get('plantuml_server')
 
         if server_url:
@@ -90,8 +89,14 @@ class PlantUMLDiagram(BaseDiagram):
                 content = self._generate_server( "%s/%s/" % (server_url.strip('/'), self.output_format))
                 self.file.write(content)
                 return self.file
-            except plantuml_connection.PlantUMLConnectionError as error:
-                sublime.error_message("PlantUmlDiagrams failed to connect '%s': %s", server_url, error)
+            except plantuml_connection.PlantUMLError as e:
+                errmsg = str(e).lower()
+                if "bad request" in errmsg:
+                    sublime.error_message("PlantUmlDiagrams: syntax error, check your source!")
+                elif "connection refused" in errmsg:
+                    sublime.error_message("PlantUmlDiagrams: connect to '%s' failed!" % server_url)
+                else:
+                    sublime.error_message("PlantUmlDiagrams: %s (%s)" % (e, server_url))
                 return None
         else:
             log(1, "using local rendering...")
@@ -223,7 +228,7 @@ class PlantUMLProcessor(BaseProcessor):
         )
 
         if not exists(self.plantuml_jar_path):
-            sublime_settings = load_settings("PlantUmlDiagrams.sublime-settings")
+            sublime_settings = sublime.load_settings("PlantUmlDiagrams.sublime-settings")
             self.plantuml_jar_path = abspath(sublime_settings.get('jar_file'))
             self.plantuml_jar_file = basename(self.plantuml_jar_path)
 

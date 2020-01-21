@@ -24,7 +24,6 @@ except NameError:
 
 def process_diagram_image(view):
     all_views_active[view.id()] = view
-    view.set_status(view.file_name(), "Generating diagrams from '%s'..." % view.file_name())
 
     try:
         if not process(view):
@@ -33,8 +32,6 @@ def process_diagram_image(view):
         # TODO show syntax error use mdpop
         sublime.error_message("Syntax error on diagram: %s",
             re.findall(r'X-PlantUML-Diagram-Description:((?:.|\n)*?)X-Powered-By', str(error)))
-    finally:
-        view.erase_status(view.file_name())
 
 
 class DisplayDiagramsContinuallyEventListener(sublime_plugin.ViewEventListener):
