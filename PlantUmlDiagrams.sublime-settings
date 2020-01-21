@@ -1,27 +1,4 @@
 {
-    // restart sublime to apply the changes
-    //
-    // Sublime3 - All Platforms
-    // Preview - OSX only `open`
-    // Quick Look - OSX only `qlmanage`
-    // EyeOfGnome - Gnome Viewer `eog`
-    // FreedesktopDefault - Linux only `xdg-open`
-    // WindowsDefaultViewer - Windows Only
-    //
-    "viewer" : "Sublime3",
-
-    // Display diagnostic (debug) messages on Sublime Text start up, about the
-    // installation state. Possible values are:
-    // 0   - No messages
-    // 1   - Some messages
-    // 127 - All messages possible (very verbose)
-    "check_on_startup": 0,
-
-    // Generate a new file each time a diagram is created, or just create the
-    // diagram using the current file name as base. On this case, the file will
-    // be created on the same directory as the current file.
-    "new_file": false,
-
     // valid values:
     // 'png'              generate images using PNG format
     // 'svg'              generate images using SVG format
@@ -53,11 +30,8 @@
     //
     // Find the server address, like: http://localhost:8080/plantuml, or
     // http://192.168.1.100:8080/plantuml which is ready for sharing to your team.
-    "plantuml_server": "http://localhost:8080/plantuml/",
+    "plantuml_server": "http://localhost:8080",
 
     // The full path to the plantuml.jar file, change to your path
-    "jar_file": "/usr/local/plantuml.jar",
-
-    // Can be "UTF-8" - to support non-latin text in diagram
-    "charset": "UTF-8"
+    "jar_file": "/usr/local/plantuml.jar"
 }

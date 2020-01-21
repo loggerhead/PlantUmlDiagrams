@@ -70,13 +70,8 @@ class PlantUMLDiagram(BaseDiagram):
             self.sourceFile = self.file.name
 
         else:
-
-            if self.uml_processor.NEW_FILE:
-                self.file = NamedTemporaryFile(prefix=self.sourceFile, suffix=self.output_extension, delete=False)
-
-            else:
-                self.sourceFile = "%s%s%s" % (splitext(self.sourceFile)[0], str(sequence) if sequence else "", self.output_extension)
-                self.file = open(self.sourceFile, 'wb')
+            self.sourceFile = "%s%s%s" % (splitext(self.sourceFile)[0], str(sequence) if sequence else "", self.output_extension)
+            self.file = open(self.sourceFile, 'wb')
 
     def __str__(self):
         return "Diagram of %s(%s, %s)" % ( self.sourceFile, self.output_format, self.output_extension )
@@ -89,29 +84,22 @@ class PlantUMLDiagram(BaseDiagram):
         Set the dir of sourceFile as working dir, otherwise plantuml could not include files correctly.
         """
         sublime_settings = load_settings("PlantUmlDiagrams.sublime-settings")
+        server_url = sublime_settings.get('plantuml_server')
 
-        server_url = sublime_settings.get('plantuml_server', 'http://www.plantuml.com/plantuml/')
-
-        if self._validate_url_syntax(server_url):
+        if server_url:
             try:
                 content = self._generate_server( "%s/%s/" % (server_url.strip('/'), self.output_format))
                 self.file.write(content)
                 return self.file
             except plantuml_connection.PlantUMLConnectionError as error:
-                log(1, "Failed to connect to the server: %s (%s) Falling back to local rendering...", error, server_url)
+                sublime.error_message("PlantUmlDiagrams failed to connect '%s': %s", server_url, error)
+                return None
         else:
-            log(1, "Invalid plantuml_server specified, using local rendering...")
-
-        # falling back to local generation
-        cwd, startupinfo = self._get_local_dir_info()
-        self._generate_local(cwd, startupinfo)
-        return self.file
-
-    @staticmethod
-    def _validate_url_syntax(server_url):
-        from urllib.parse import urlparse
-        return urlparse(server_url).scheme.lower() in ("http", "https")
-
+            log(1, "using local rendering...")
+            # falling back to local generation
+            cwd, startupinfo = self._get_local_dir_info()
+            self._generate_local(cwd, startupinfo)
+            return self.file
 
     def _generate_server(self, server_url):
         plantumlserver = plantuml_connection.PlantUML(server_url)
@@ -130,21 +118,9 @@ class PlantUMLDiagram(BaseDiagram):
             '-pipe',
             '-failfast2', # http://plantuml.com/command-line
             '-t%s' % self.output_format,
+            '-charset',
+            'UTF-8',
         ]
-
-        charset = self.uml_processor.CHARSET
-
-        if charset:
-            # log(1, 'using charset: %s', charset)
-            command.append("-charset")
-            command.append(charset)
-
-        else:
-            # log(1, 'using default charset: UTF-8')
-            command.append("-charset")
-            command.append('UTF-8')
-
-        # log(1, "Command: %s", command)
 
         puml = execute(
             command,
@@ -187,11 +163,11 @@ class PlantUMLDiagram(BaseDiagram):
             # Make sure the cwd is ascii
             try:
                 cwd.encode('mbcs')
-
             except UnicodeEncodeError:
                 buf = create_unicode_buffer(512)
                 if windll.kernel32.GetShortPathNameW(cwd, buf, len(buf)):
                     cwd = buf.value
+
         return cwd, startupinfo
 
 
@@ -202,11 +178,10 @@ class PlantUMLProcessor(BaseProcessor):
         return "Plant UML Processor"
 
     def load(self):
-        self.check_dependencies()
-        self.find_plantuml_jar()
-
-        if self.CHECK_ON_STARTUP:
-            self.check_plantuml_functionality()
+        pass
+        # self.check_dependencies()
+        # self.find_plantuml_jar()
+        # self.check_plantuml_functionality()
 
     def check_dependencies(self):
         has_java = call(

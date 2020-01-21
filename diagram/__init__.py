@@ -10,34 +10,25 @@ from threading import Thread
 import sys
 
 log = getLogger(__name__)
-INITIALIZED = False
 
 AVAILABLE_PROCESSORS = [PlantUMLProcessor]
 ACTIVE_UML_PROCESSORS = []
 
 
 def setup():
-    global INITIALIZED
+    log._debug_level = 1
     sublime_settings = sublime.load_settings("PlantUmlDiagrams.sublime-settings")
-
-    log._debug_level = 1 + sublime_settings.get('check_on_startup', 0)
     _load_preprocessor(sublime_settings)
-
-    INITIALIZED = True
-    log(4, "Processors: %s", ACTIVE_UML_PROCESSORS)
 
 
 def _load_preprocessor(sublime_settings):
     global ACTIVE_UML_PROCESSORS
     ACTIVE_UML_PROCESSORS = []
 
-    def load_preprocessor():
+    def load_preprocessor(plantuml_processor):
         try:
             log(4, "Loading plantuml_processor class: %s", plantuml_processor)
             proc = plantuml_processor()
-            proc.CHARSET = sublime_settings.get('charset', None)
-            proc.CHECK_ON_STARTUP = sublime_settings.get('check_on_startup', 1)
-            proc.NEW_FILE = sublime_settings.get('new_file', True)
             proc.OUTPUT_FORMAT = sublime_settings.get('output_format', 'png')
             proc.load()
 
@@ -49,7 +40,7 @@ def _load_preprocessor(sublime_settings):
         return False
 
     for plantuml_processor in AVAILABLE_PROCESSORS:
-        if load_preprocessor():
+        if load_preprocessor(plantuml_processor):
             break
 
     if not ACTIVE_UML_PROCESSORS:

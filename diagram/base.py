@@ -22,9 +22,6 @@ class BaseDiagram(object):
 
 class BaseProcessor(object):
     DIAGRAM_CLASS = None
-    CHARSET = None
-    CHECK_ON_STARTUP = True
-    NEW_FILE = False
 
     def __str__(self):
         return "Base Processor"
