@@ -1,0 +1,1101 @@
+{
+    "scope": "source.plantuml", 
+    "completions": [
+        {
+            "trigger": "!define", 
+            "contents": "!define"
+        }, 
+        {
+            "trigger": "!definelong", 
+            "contents": "!definelong"
+        }, 
+        {
+            "trigger": "!else", 
+            "contents": "!else"
+        }, 
+        {
+            "trigger": "!enddefinelong", 
+            "contents": "!enddefinelong"
+        }, 
+        {
+            "trigger": "!endif", 
+            "contents": "!endif"
+        }, 
+        {
+            "trigger": "!exit", 
+            "contents": "!exit"
+        }, 
+        {
+            "trigger": "!if", 
+            "contents": "!if"
+        }, 
+        {
+            "trigger": "!ifdef", 
+            "contents": "!ifdef"
+        }, 
+        {
+            "trigger": "!ifndef", 
+            "contents": "!ifndef"
+        }, 
+        {
+            "trigger": "!include", 
+            "contents": "!include"
+        }, 
+        {
+            "trigger": "!pragma", 
+            "contents": "!pragma"
+        }, 
+        {
+            "trigger": "!undef", 
+            "contents": "!undef"
+        }, 
+        {
+            "trigger": "@enddot", 
+            "contents": "@enddot"
+        }, 
+        {
+            "trigger": "@endsalt", 
+            "contents": "@endsalt"
+        }, 
+        {
+            "trigger": "@enduml", 
+            "contents": "@enduml"
+        }, 
+        {
+            "trigger": "@startdot", 
+            "contents": "@startdot"
+        }, 
+        {
+            "trigger": "@startsalt", 
+            "contents": "@startsalt"
+        }, 
+        {
+            "trigger": "@startuml", 
+            "contents": "@startuml"
+        }, 
+        {
+            "trigger": "aliceblue", 
+            "contents": "AliceBlue"
+        }, 
+        {
+            "trigger": "antiquewhite", 
+            "contents": "AntiqueWhite"
+        }, 
+        {
+            "trigger": "aqua", 
+            "contents": "Aqua"
+        }, 
+        {
+            "trigger": "aquamarine", 
+            "contents": "Aquamarine"
+        }, 
+        {
+            "trigger": "azure", 
+            "contents": "Azure"
+        }, 
+        {
+            "trigger": "beige", 
+            "contents": "Beige"
+        }, 
+        {
+            "trigger": "bisque", 
+            "contents": "Bisque"
+        }, 
+        {
+            "trigger": "black", 
+            "contents": "Black"
+        }, 
+        {
+            "trigger": "blanchedalmond", 
+            "contents": "BlanchedAlmond"
+        }, 
+        {
+            "trigger": "blue", 
+            "contents": "Blue"
+        }, 
+        {
+            "trigger": "blueviolet", 
+            "contents": "BlueViolet"
+        }, 
+        {
+            "trigger": "brown", 
+            "contents": "Brown"
+        }, 
+        {
+            "trigger": "burlywood", 
+            "contents": "BurlyWood"
+        }, 
+        {
+            "trigger": "cadetblue", 
+            "contents": "CadetBlue"
+        }, 
+        {
+            "trigger": "chartreuse", 
+            "contents": "Chartreuse"
+        }, 
+        {
+            "trigger": "chocolate", 
+            "contents": "Chocolate"
+        }, 
+        {
+            "trigger": "coral", 
+            "contents": "Coral"
+        }, 
+        {
+            "trigger": "cornflowerblue", 
+            "contents": "CornflowerBlue"
+        }, 
+        {
+            "trigger": "cornsilk", 
+            "contents": "Cornsilk"
+        }, 
+        {
+            "trigger": "crimson", 
+            "contents": "Crimson"
+        }, 
+        {
+            "trigger": "cyan", 
+            "contents": "Cyan"
+        }, 
+        {
+            "trigger": "darkblue", 
+            "contents": "DarkBlue"
+        }, 
+        {
+            "trigger": "darkcyan", 
+            "contents": "DarkCyan"
+        }, 
+        {
+            "trigger": "darkgoldenrod", 
+            "contents": "DarkGoldenRod"
+        }, 
+        {
+            "trigger": "darkgray", 
+            "contents": "DarkGray"
+        }, 
+        {
+            "trigger": "darkgreen", 
+            "contents": "DarkGreen"
+        }, 
+        {
+            "trigger": "darkgrey", 
+            "contents": "DarkGrey"
+        }, 
+        {
+            "trigger": "darkkhaki", 
+            "contents": "DarkKhaki"
+        }, 
+        {
+            "trigger": "darkmagenta", 
+            "contents": "DarkMagenta"
+        }, 
+        {
+            "trigger": "darkolivegreen", 
+            "contents": "DarkOliveGreen"
+        }, 
+        {
+            "trigger": "darkorchid", 
+            "contents": "DarkOrchid"
+        }, 
+        {
+            "trigger": "darkred", 
+            "contents": "DarkRed"
+        }, 
+        {
+            "trigger": "darksalmon", 
+            "contents": "DarkSalmon"
+        }, 
+        {
+            "trigger": "darkseagreen", 
+            "contents": "DarkSeaGreen"
+        }, 
+        {
+            "trigger": "darkslateblue", 
+            "contents": "DarkSlateBlue"
+        }, 
+        {
+            "trigger": "darkslategray", 
+            "contents": "DarkSlateGray"
+        }, 
+        {
+            "trigger": "darkslategrey", 
+            "contents": "DarkSlateGrey"
+        }, 
+        {
+            "trigger": "darkturquoise", 
+            "contents": "DarkTurquoise"
+        }, 
+        {
+            "trigger": "darkviolet", 
+            "contents": "DarkViolet"
+        }, 
+        {
+            "trigger": "darkorange", 
+            "contents": "Darkorange"
+        }, 
+        {
+            "trigger": "deeppink", 
+            "contents": "DeepPink"
+        }, 
+        {
+            "trigger": "deepskyblue", 
+            "contents": "DeepSkyBlue"
+        }, 
+        {
+            "trigger": "dimgray", 
+            "contents": "DimGray"
+        }, 
+        {
+            "trigger": "dimgrey", 
+            "contents": "DimGrey"
+        }, 
+        {
+            "trigger": "dodgerblue", 
+            "contents": "DodgerBlue"
+        }, 
+        {
+            "trigger": "firebrick", 
+            "contents": "FireBrick"
+        }, 
+        {
+            "trigger": "floralwhite", 
+            "contents": "FloralWhite"
+        }, 
+        {
+            "trigger": "forestgreen", 
+            "contents": "ForestGreen"
+        }, 
+        {
+            "trigger": "fuchsia", 
+            "contents": "Fuchsia"
+        }, 
+        {
+            "trigger": "gainsboro", 
+            "contents": "Gainsboro"
+        }, 
+        {
+            "trigger": "ghostwhite", 
+            "contents": "GhostWhite"
+        }, 
+        {
+            "trigger": "gold", 
+            "contents": "Gold"
+        }, 
+        {
+            "trigger": "goldenrod", 
+            "contents": "GoldenRod"
+        }, 
+        {
+            "trigger": "gray", 
+            "contents": "Gray"
+        }, 
+        {
+            "trigger": "green", 
+            "contents": "Green"
+        }, 
+        {
+            "trigger": "greenyellow", 
+            "contents": "GreenYellow"
+        }, 
+        {
+            "trigger": "grey", 
+            "contents": "Grey"
+        }, 
+        {
+            "trigger": "honeydew", 
+            "contents": "HoneyDew"
+        }, 
+        {
+            "trigger": "hotpink", 
+            "contents": "HotPink"
+        }, 
+        {
+            "trigger": "indianred", 
+            "contents": "IndianRed"
+        }, 
+        {
+            "trigger": "indigo", 
+            "contents": "Indigo"
+        }, 
+        {
+            "trigger": "ivory", 
+            "contents": "Ivory"
+        }, 
+        {
+            "trigger": "khaki", 
+            "contents": "Khaki"
+        }, 
+        {
+            "trigger": "lavender", 
+            "contents": "Lavender"
+        }, 
+        {
+            "trigger": "lavenderblush", 
+            "contents": "LavenderBlush"
+        }, 
+        {
+            "trigger": "lawngreen", 
+            "contents": "LawnGreen"
+        }, 
+        {
+            "trigger": "lemonchiffon", 
+            "contents": "LemonChiffon"
+        }, 
+        {
+            "trigger": "lightblue", 
+            "contents": "LightBlue"
+        }, 
+        {
+            "trigger": "lightcoral", 
+            "contents": "LightCoral"
+        }, 
+        {
+            "trigger": "lightcyan", 
+            "contents": "LightCyan"
+        }, 
+        {
+            "trigger": "lightgoldenrodyellow", 
+            "contents": "LightGoldenRodYellow"
+        }, 
+        {
+            "trigger": "lightgray", 
+            "contents": "LightGray"
+        }, 
+        {
+            "trigger": "lightgreen", 
+            "contents": "LightGreen"
+        }, 
+        {
+            "trigger": "lightgrey", 
+            "contents": "LightGrey"
+        }, 
+        {
+            "trigger": "lightpink", 
+            "contents": "LightPink"
+        }, 
+        {
+            "trigger": "lightsalmon", 
+            "contents": "LightSalmon"
+        }, 
+        {
+            "trigger": "lightseagreen", 
+            "contents": "LightSeaGreen"
+        }, 
+        {
+            "trigger": "lightskyblue", 
+            "contents": "LightSkyBlue"
+        }, 
+        {
+            "trigger": "lightslategray", 
+            "contents": "LightSlateGray"
+        }, 
+        {
+            "trigger": "lightslategrey", 
+            "contents": "LightSlateGrey"
+        }, 
+        {
+            "trigger": "lightsteelblue", 
+            "contents": "LightSteelBlue"
+        }, 
+        {
+            "trigger": "lightyellow", 
+            "contents": "LightYellow"
+        }, 
+        {
+            "trigger": "lime", 
+            "contents": "Lime"
+        }, 
+        {
+            "trigger": "limegreen", 
+            "contents": "LimeGreen"
+        }, 
+        {
+            "trigger": "linen", 
+            "contents": "Linen"
+        }, 
+        {
+            "trigger": "magenta", 
+            "contents": "Magenta"
+        }, 
+        {
+            "trigger": "maroon", 
+            "contents": "Maroon"
+        }, 
+        {
+            "trigger": "mediumaquamarine", 
+            "contents": "MediumAquaMarine"
+        }, 
+        {
+            "trigger": "mediumblue", 
+            "contents": "MediumBlue"
+        }, 
+        {
+            "trigger": "mediumorchid", 
+            "contents": "MediumOrchid"
+        }, 
+        {
+            "trigger": "mediumpurple", 
+            "contents": "MediumPurple"
+        }, 
+        {
+            "trigger": "mediumseagreen", 
+            "contents": "MediumSeaGreen"
+        }, 
+        {
+            "trigger": "mediumslateblue", 
+            "contents": "MediumSlateBlue"
+        }, 
+        {
+            "trigger": "mediumspringgreen", 
+            "contents": "MediumSpringGreen"
+        }, 
+        {
+            "trigger": "mediumturquoise", 
+            "contents": "MediumTurquoise"
+        }, 
+        {
+            "trigger": "mediumvioletred", 
+            "contents": "MediumVioletRed"
+        }, 
+        {
+            "trigger": "midnightblue", 
+            "contents": "MidnightBlue"
+        }, 
+        {
+            "trigger": "mintcream", 
+            "contents": "MintCream"
+        }, 
+        {
+            "trigger": "mistyrose", 
+            "contents": "MistyRose"
+        }, 
+        {
+            "trigger": "moccasin", 
+            "contents": "Moccasin"
+        }, 
+        {
+            "trigger": "navajowhite", 
+            "contents": "NavajoWhite"
+        }, 
+        {
+            "trigger": "navy", 
+            "contents": "Navy"
+        }, 
+        {
+            "trigger": "oldlace", 
+            "contents": "OldLace"
+        }, 
+        {
+            "trigger": "olive", 
+            "contents": "Olive"
+        }, 
+        {
+            "trigger": "olivedrab", 
+            "contents": "OliveDrab"
+        }, 
+        {
+            "trigger": "orange", 
+            "contents": "Orange"
+        }, 
+        {
+            "trigger": "orangered", 
+            "contents": "OrangeRed"
+        }, 
+        {
+            "trigger": "orchid", 
+            "contents": "Orchid"
+        }, 
+        {
+            "trigger": "palegoldenrod", 
+            "contents": "PaleGoldenRod"
+        }, 
+        {
+            "trigger": "palegreen", 
+            "contents": "PaleGreen"
+        }, 
+        {
+            "trigger": "paleturquoise", 
+            "contents": "PaleTurquoise"
+        }, 
+        {
+            "trigger": "palevioletred", 
+            "contents": "PaleVioletRed"
+        }, 
+        {
+            "trigger": "papayawhip", 
+            "contents": "PapayaWhip"
+        }, 
+        {
+            "trigger": "peachpuff", 
+            "contents": "PeachPuff"
+        }, 
+        {
+            "trigger": "peru", 
+            "contents": "Peru"
+        }, 
+        {
+            "trigger": "pink", 
+            "contents": "Pink"
+        }, 
+        {
+            "trigger": "plum", 
+            "contents": "Plum"
+        }, 
+        {
+            "trigger": "powderblue", 
+            "contents": "PowderBlue"
+        }, 
+        {
+            "trigger": "purple", 
+            "contents": "Purple"
+        }, 
+        {
+            "trigger": "red", 
+            "contents": "Red"
+        }, 
+        {
+            "trigger": "rosybrown", 
+            "contents": "RosyBrown"
+        }, 
+        {
+            "trigger": "royalblue", 
+            "contents": "RoyalBlue"
+        }, 
+        {
+            "trigger": "saddlebrown", 
+            "contents": "SaddleBrown"
+        }, 
+        {
+            "trigger": "salmon", 
+            "contents": "Salmon"
+        }, 
+        {
+            "trigger": "sandybrown", 
+            "contents": "SandyBrown"
+        }, 
+        {
+            "trigger": "seagreen", 
+            "contents": "SeaGreen"
+        }, 
+        {
+            "trigger": "seashell", 
+            "contents": "SeaShell"
+        }, 
+        {
+            "trigger": "sienna", 
+            "contents": "Sienna"
+        }, 
+        {
+            "trigger": "silver", 
+            "contents": "Silver"
+        }, 
+        {
+            "trigger": "skyblue", 
+            "contents": "SkyBlue"
+        }, 
+        {
+            "trigger": "slateblue", 
+            "contents": "SlateBlue"
+        }, 
+        {
+            "trigger": "slategray", 
+            "contents": "SlateGray"
+        }, 
+        {
+            "trigger": "slategrey", 
+            "contents": "SlateGrey"
+        }, 
+        {
+            "trigger": "snow", 
+            "contents": "Snow"
+        }, 
+        {
+            "trigger": "springgreen", 
+            "contents": "SpringGreen"
+        }, 
+        {
+            "trigger": "steelblue", 
+            "contents": "SteelBlue"
+        }, 
+        {
+            "trigger": "tan", 
+            "contents": "Tan"
+        }, 
+        {
+            "trigger": "teal", 
+            "contents": "Teal"
+        }, 
+        {
+            "trigger": "thistle", 
+            "contents": "Thistle"
+        }, 
+        {
+            "trigger": "tomato", 
+            "contents": "Tomato"
+        }, 
+        {
+            "trigger": "turquoise", 
+            "contents": "Turquoise"
+        }, 
+        {
+            "trigger": "violet", 
+            "contents": "Violet"
+        }, 
+        {
+            "trigger": "wheat", 
+            "contents": "Wheat"
+        }, 
+        {
+            "trigger": "white", 
+            "contents": "White"
+        }, 
+        {
+            "trigger": "whitesmoke", 
+            "contents": "WhiteSmoke"
+        }, 
+        {
+            "trigger": "yellow", 
+            "contents": "Yellow"
+        }, 
+        {
+            "trigger": "yellowgreen", 
+            "contents": "YellowGreen"
+        }, 
+        {
+            "trigger": "abstract", 
+            "contents": "abstract"
+        }, 
+        {
+            "trigger": "accross", 
+            "contents": "accross"
+        }, 
+        {
+            "trigger": "activate", 
+            "contents": "activate"
+        }, 
+        {
+            "trigger": "actor", 
+            "contents": "actor"
+        }, 
+        {
+            "trigger": "again", 
+            "contents": "again"
+        }, 
+        {
+            "trigger": "agent", 
+            "contents": "agent"
+        }, 
+        {
+            "trigger": "allow_mixing", 
+            "contents": "allow_mixing"
+        }, 
+        {
+            "trigger": "allowmixing", 
+            "contents": "allowmixing"
+        }, 
+        {
+            "trigger": "also", 
+            "contents": "also"
+        }, 
+        {
+            "trigger": "alt", 
+            "contents": "alt"
+        }, 
+        {
+            "trigger": "alt", 
+            "contents": "alt"
+        }, 
+        {
+            "trigger": "archimate", 
+            "contents": "archimate"
+        }, 
+        {
+            "trigger": "artifact", 
+            "contents": "artifact"
+        }, 
+        {
+            "trigger": "as", 
+            "contents": "as"
+        }, 
+        {
+            "trigger": "autonumber", 
+            "contents": "autonumber"
+        }, 
+        {
+            "trigger": "bottom", 
+            "contents": "bottom"
+        }, 
+        {
+            "trigger": "boundary", 
+            "contents": "boundary"
+        }, 
+        {
+            "trigger": "box", 
+            "contents": "box"
+        }, 
+        {
+            "trigger": "break", 
+            "contents": "break"
+        }, 
+        {
+            "trigger": "break", 
+            "contents": "break"
+        }, 
+        {
+            "trigger": "caption", 
+            "contents": "caption"
+        }, 
+        {
+            "trigger": "card", 
+            "contents": "card"
+        }, 
+        {
+            "trigger": "center", 
+            "contents": "center"
+        }, 
+        {
+            "trigger": "chocolate", 
+            "contents": "chocolate"
+        }, 
+        {
+            "trigger": "class", 
+            "contents": "class"
+        }, 
+        {
+            "trigger": "cloud", 
+            "contents": "cloud"
+        }, 
+        {
+            "trigger": "collections", 
+            "contents": "collections"
+        }, 
+        {
+            "trigger": "colors", 
+            "contents": "colors"
+        }, 
+        {
+            "trigger": "component", 
+            "contents": "component"
+        }, 
+        {
+            "trigger": "control", 
+            "contents": "control"
+        }, 
+        {
+            "trigger": "create", 
+            "contents": "create"
+        }, 
+        {
+            "trigger": "critical", 
+            "contents": "critical"
+        }, 
+        {
+            "trigger": "critical", 
+            "contents": "critical"
+        }, 
+        {
+            "trigger": "database", 
+            "contents": "database"
+        }, 
+        {
+            "trigger": "deactivate", 
+            "contents": "deactivate"
+        }, 
+        {
+            "trigger": "destroy", 
+            "contents": "destroy"
+        }, 
+        {
+            "trigger": "detach", 
+            "contents": "detach"
+        }, 
+        {
+            "trigger": "diamond", 
+            "contents": "diamond"
+        }, 
+        {
+            "trigger": "down", 
+            "contents": "down"
+        }, 
+        {
+            "trigger": "else", 
+            "contents": "else"
+        }, 
+        {
+            "trigger": "else", 
+            "contents": "else"
+        }, 
+        {
+            "trigger": "else", 
+            "contents": "else"
+        }, 
+        {
+            "trigger": "elseif", 
+            "contents": "elseif"
+        }, 
+        {
+            "trigger": "end", 
+            "contents": "end"
+        }, 
+        {
+            "trigger": "endif", 
+            "contents": "endif"
+        }, 
+        {
+            "trigger": "endwhile", 
+            "contents": "endwhile"
+        }, 
+        {
+            "trigger": "entity", 
+            "contents": "entity"
+        }, 
+        {
+            "trigger": "enum", 
+            "contents": "enum"
+        }, 
+        {
+            "trigger": "file", 
+            "contents": "file"
+        }, 
+        {
+            "trigger": "folder", 
+            "contents": "folder"
+        }, 
+        {
+            "trigger": "footbox", 
+            "contents": "footbox"
+        }, 
+        {
+            "trigger": "footer", 
+            "contents": "footer"
+        }, 
+        {
+            "trigger": "fork", 
+            "contents": "fork"
+        }, 
+        {
+            "trigger": "frame", 
+            "contents": "frame"
+        }, 
+        {
+            "trigger": "group", 
+            "contents": "group"
+        }, 
+        {
+            "trigger": "group", 
+            "contents": "group"
+        }, 
+        {
+            "trigger": "header", 
+            "contents": "header"
+        }, 
+        {
+            "trigger": "hide", 
+            "contents": "hide"
+        }, 
+        {
+            "trigger": "hnote", 
+            "contents": "hnote"
+        }, 
+        {
+            "trigger": "if", 
+            "contents": "if"
+        }, 
+        {
+            "trigger": "interface", 
+            "contents": "interface"
+        }, 
+        {
+            "trigger": "is", 
+            "contents": "is"
+        }, 
+        {
+            "trigger": "kill", 
+            "contents": "kill"
+        }, 
+        {
+            "trigger": "lastpage", 
+            "contents": "lastpage"
+        }, 
+        {
+            "trigger": "left", 
+            "contents": "left"
+        }, 
+        {
+            "trigger": "legend", 
+            "contents": "legend"
+        }, 
+        {
+            "trigger": "link", 
+            "contents": "link"
+        }, 
+        {
+            "trigger": "loop", 
+            "contents": "loop"
+        }, 
+        {
+            "trigger": "looppar", 
+            "contents": "looppar"
+        }, 
+        {
+            "trigger": "mainframe", 
+            "contents": "mainframe"
+        }, 
+        {
+            "trigger": "namespace", 
+            "contents": "namespace"
+        }, 
+        {
+            "trigger": "newpage", 
+            "contents": "newpage"
+        }, 
+        {
+            "trigger": "node", 
+            "contents": "node"
+        }, 
+        {
+            "trigger": "note", 
+            "contents": "note"
+        }, 
+        {
+            "trigger": "object", 
+            "contents": "object"
+        }, 
+        {
+            "trigger": "of", 
+            "contents": "of"
+        }, 
+        {
+            "trigger": "on", 
+            "contents": "on"
+        }, 
+        {
+            "trigger": "opt", 
+            "contents": "opt"
+        }, 
+        {
+            "trigger": "opt", 
+            "contents": "opt"
+        }, 
+        {
+            "trigger": "order", 
+            "contents": "order"
+        }, 
+        {
+            "trigger": "over", 
+            "contents": "over"
+        }, 
+        {
+            "trigger": "package", 
+            "contents": "package"
+        }, 
+        {
+            "trigger": "package", 
+            "contents": "package"
+        }, 
+        {
+            "trigger": "page", 
+            "contents": "page"
+        }, 
+        {
+            "trigger": "par", 
+            "contents": "par"
+        }, 
+        {
+            "trigger": "participant", 
+            "contents": "participant"
+        }, 
+        {
+            "trigger": "partition", 
+            "contents": "partition"
+        }, 
+        {
+            "trigger": "queue", 
+            "contents": "queue"
+        }, 
+        {
+            "trigger": "rectangle", 
+            "contents": "rectangle"
+        }, 
+        {
+            "trigger": "ref", 
+            "contents": "ref"
+        }, 
+        {
+            "trigger": "repeat", 
+            "contents": "repeat"
+        }, 
+        {
+            "trigger": "return", 
+            "contents": "return"
+        }, 
+        {
+            "trigger": "right", 
+            "contents": "right"
+        }, 
+        {
+            "trigger": "rnote", 
+            "contents": "rnote"
+        }, 
+        {
+            "trigger": "rotate", 
+            "contents": "rotate"
+        }, 
+        {
+            "trigger": "show", 
+            "contents": "show"
+        }, 
+        {
+            "trigger": "skin", 
+            "contents": "skin"
+        }, 
+        {
+            "trigger": "skinparam", 
+            "contents": "skinparam"
+        }, 
+        {
+            "trigger": "stack", 
+            "contents": "stack"
+        }, 
+        {
+            "trigger": "start", 
+            "contents": "start"
+        }, 
+        {
+            "trigger": "state", 
+            "contents": "state"
+        }, 
+        {
+            "trigger": "stop", 
+            "contents": "stop"
+        }, 
+        {
+            "trigger": "storage", 
+            "contents": "storage"
+        }, 
+        {
+            "trigger": "title", 
+            "contents": "title"
+        }, 
+        {
+            "trigger": "top", 
+            "contents": "top"
+        }, 
+        {
+            "trigger": "toptobottomdirection", 
+            "contents": "toptobottomdirection"
+        }, 
+        {
+            "trigger": "up", 
+            "contents": "up"
+        }, 
+        {
+            "trigger": "usecase", 
+            "contents": "usecase"
+        }, 
+        {
+            "trigger": "while", 
+            "contents": "while"
+        }
+    ]
+}
