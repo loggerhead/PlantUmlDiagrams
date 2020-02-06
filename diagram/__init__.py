@@ -71,12 +71,20 @@ def process(view):
 def render_and_view(source_view, sourceFile, diagrams):
     sequence = [0]
     diagram_files = []
+    any_failed = False
 
     for plantuml_processor, text_blocks in diagrams:
         source_view.set_status(str(source_view.id()), "Generating diagrams from '%s'..." % sourceFile)
-        diagram_file = plantuml_processor.process(sourceFile, text_blocks, sequence)
-        source_view.erase_status(str(source_view.id()))
-        diagram_files.extend(diagram_file)
+
+        try:
+            diagram_file = plantuml_processor.process(sourceFile, text_blocks, sequence)
+            diagram_files.extend(diagram_file)
+            source_view.erase_status('plantuml_err')
+        except Exception as e:
+            source_view.set_status('plantuml_err', str(e))
+            any_failed = True
+        finally:
+            source_view.erase_status(str(source_view.id()))
         sequence[0] += 1
 
     if diagram_files:
@@ -84,6 +92,6 @@ def render_and_view(source_view, sourceFile, diagrams):
         names = [d.name for d in diagram_files if d]
         for diagram_file in diagram_files:
             render_view = sublime.active_window().open_file(diagram_file.name)
-            sublime.active_window().focus_view(source_view)
-    else:
+        sublime.active_window().focus_view(source_view)
+    elif not any_failed:
         sublime.error_message("No diagrams generated...")

@@ -92,11 +92,11 @@ class PlantUMLDiagram(BaseDiagram):
             except plantuml_connection.PlantUMLError as e:
                 errmsg = str(e).lower()
                 if "bad request" in errmsg:
-                    sublime.error_message("PlantUmlDiagrams: syntax error, check your source!")
+                    raise Exception("PlantUmlDiagrams: syntax error, check your source!")
                 elif "connection refused" in errmsg:
-                    sublime.error_message("PlantUmlDiagrams: connect to '%s' failed!" % server_url)
+                    raise Exception("PlantUmlDiagrams: connect to '%s' failed!" % server_url)
                 else:
-                    sublime.error_message("PlantUmlDiagrams: %s (%s)" % (e, server_url))
+                    raise Exception("PlantUmlDiagrams: %s (%s)" % (e, server_url))
                 return None
         else:
             log(1, "using local rendering...")
