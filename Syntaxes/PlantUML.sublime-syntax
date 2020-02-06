@@ -162,6 +162,7 @@ contexts:
     - include: arrow_expr
     - include: note_expr
     - include: title_expr
+    - include: return_expr
 
   arrow_expr:
     - match: '[\[\]]?[xo\*]?[</\\]{0,2}[-.](?:\[({{color_pattern}})\])?[-.]?[>/\\]{0,2}[xo\*]?[\[\]]?'
@@ -178,6 +179,12 @@ contexts:
 
   title_expr:
     - match: ^\s*(title)\s+(.*)
+      captures:
+        1: keyword.control.plantuml
+        2: string.quoted.double.plantuml
+
+  return_expr:
+    - match: ^\s*(return)\s+(.*)
       captures:
         1: keyword.control.plantuml
         2: string.quoted.double.plantuml
